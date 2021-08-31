@@ -1265,8 +1265,6 @@ X515JP-EJ009U3	ASUS	Notebooks	https://images.icecat.biz/img/gallery/93134779_603
 X515JP-EJ009U2	ASUS	Notebooks	https://images.icecat.biz/img/gallery/93134781_1772315722.jpg
 X515JP-EJ009A6	ASUS	Notebooks	https://images.icecat.biz/img/gallery/93134791_8950770248.jpg
 X515JP-EJ009A5	ASUS	Notebooks	https://images.icecat.biz/img/gallery/93134801_1758615854.jpg
-Name	Supplier	Category	Images
-Name	Supplier	Category	Images
 DW316	DELL	Optical Disc Drives	https://images.icecat.biz/img/gallery/71294037_8003770968.jpg
 P30 Pro	Huawei	Smartphones	https://images.icecat.biz/img/gallery/71666628_5723801986.jpg
 ZBook 15 G2 T1A	HP	Notebooks	https://images.icecat.biz/img/gallery/71666629_5093080720.jpg
