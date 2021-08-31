@@ -3,7 +3,7 @@ var fw = require ("../inout/FileWriter")
 
 exports.getFeed = async ()=> {
 fw.write("Name\tSupplier\tCategory\tImages\n");
-var id = 29900045;
+var id = 93126412;
 var i;
 for (i = 0; i<10000;i++){
     var data = await getData.getBasicInformation(id+i);
