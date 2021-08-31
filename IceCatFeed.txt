@@ -1285,7 +1285,6 @@ X543UA-DM1761T	ASUS	Notebooks	https://images.icecat.biz/img/gallery/71666679_434
 GL504GV-ES003	ASUS	Notebooks	https://images.icecat.biz/img/gallery/71666691_7776179560.jpg
 FX505GE-AL363	ASUS	Notebooks	https://images.icecat.biz/img/gallery/71666695_4618547267.jpg
 PM-BKP-BK-15-FY15	DELL	Notebook Cases	https://images.icecat.biz/img/gallery/71666697_3898024220.jpg
-Name	Supplier	Category	Images
 Laser Mobile Mouse	HP	Mice	https://images.icecat.biz/img/gallery/62300701_8682662683.jpg
 880-127na	HP	PCs/Workstations	https://images.icecat.biz/img/gallery/62300702_4361780859.jpg
 15-cx0171tx	HP	Notebooks	https://images.icecat.biz/img/gallery/62300726_8006483869.jpg
