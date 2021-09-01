@@ -11,10 +11,10 @@ for (i = 0; i<10000;i++){
     if(data.res != "error"){
         console.log(data);
         if(firstLine){
-            fw.write("{\nname:"+data.name+",\nbrand:"+data.supplier+",\ncategory:"+data.category+",\nimage:"+data.image+"\n}");
+            fw.write("{\nid:"+id+i+",\nname:"+data.name+",\nbrand:"+data.supplier+",\ncategory:"+data.category+",\nimage:"+data.image+"\n}");
             firstLine = false;
         }else{
-        fw.write(",\n{\nname:"+data.name+",\nbrand:"+data.supplier+",\ncategory:"+data.category+",\nimage:"+data.image+"\n}");
+        fw.write(",\n{\nid:"+id+i+",\nname:"+data.name+",\nbrand:"+data.supplier+",\ncategory:"+data.category+",\nimage:"+data.image+"\n}");
         }
     }
 }
