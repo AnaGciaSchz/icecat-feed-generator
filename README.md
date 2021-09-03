@@ -17,7 +17,7 @@ Last, execute:
 ```
 npm start
 ```
-And go to ``http://localhost:3000/`` to start executing the program and generating new lines on the IceCatfeed.txt
+And go to ``http://localhost:3000/`` to start executing the program and generating new lines on the IceCatfeed.json
 
 
 <!-- CONTACT -->
