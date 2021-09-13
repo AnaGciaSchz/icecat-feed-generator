@@ -10,7 +10,7 @@ if(isElectronic(product.getCategory())){
 return {res: "ok",id: uniqid(),ean: product.getEan(), name: quitQuotationMarks(product.getTitle()), 
 supplier: product.getSupplier(), category: "Electronics", subCategory: product.getCategory(), 
 price: getPrice(product.getCategory()),description: getDescription(product), height: getHeight(product),
-weight: getWeight(product),image: getImages(product.getImages())};
+weight: getWeight(product),power: getPower(product), color: getColour(product), image: getImages(product.getImages())};
 }
 else{
     return {res: "error"}
@@ -94,4 +94,26 @@ function getWeight(product){
         }
     }
     return 0;
+}
+
+function getPower(product){
+    var specifications = product.getSpecifications();
+    var i = 0;
+    for(i;i<specifications.length;i++){
+        if(specifications[i].name.includes("Power consumption")){
+            return specifications[i].value;
+        }
+    }
+    return 0;
+}
+
+function getColour(product){
+    var specifications = product.getSpecifications();
+    var i = 0;
+    for(i;i<specifications.length;i++){
+        if(specifications[i].name.includes("Product colour")){
+            return specifications[i].value;
+        }
+    }
+    return "";
 }
