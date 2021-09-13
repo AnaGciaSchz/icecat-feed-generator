@@ -7,8 +7,9 @@ try{
 const icecatClient = await new icecat('AnaGciaSchz', '123ana');
 var product = await icecatClient.openCatalog.getProductById('EN', id);
 if(isElectronic(product.getCategory())){
-return {res: "ok",id: uniqid(), name: getName(product.getTitle()), supplier: product.getSupplier(), category: "Electronics", subCategory: product.getCategory(), 
-price: getPrice(product.getCategory()),image: getImages(product.getImages())};
+var des = product.getLongDescription();
+return {res: "ok",id: uniqid(), name: quitQuotationMarks(product.getTitle()), supplier: product.getSupplier(), category: "Electronics", subCategory: product.getCategory(), 
+price: getPrice(product.getCategory()),description: getDescription(product),image: getImages(product.getImages())};
 }
 else{
     return {res: "error"}
@@ -19,10 +20,10 @@ catch(err){
 }
 }
 
-function getName (name){
+function quitQuotationMarks (string){
     var rep = '\\'
     var place = rep+'"'
-    return name.replaceAll('"',place);
+    return string.replaceAll('"',place);
 }
 
 function getImages (images){
@@ -62,4 +63,12 @@ function getPrice(category){
    }else{
     return random.int((min = 100), (max = 500))+"$";
    }
+}
+
+function getDescription(product){
+    var description = product.getShortDescription();
+    if(description==undefined){
+        return quitQuotationMarks(product.getLongDescription().replace(/(<([^>]+)>)/gi, "").replaceAll("\n",""));
+    }
+    return quitQuotationMarks(description.replace(/(<([^>]+)>)/gi, "").replaceAll("\n",""));
 }
