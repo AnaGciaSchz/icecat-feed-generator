@@ -7,9 +7,10 @@ try{
 const icecatClient = await new icecat('AnaGciaSchz', '123ana');
 var product = await icecatClient.openCatalog.getProductById('EN', id);
 if(isElectronic(product.getCategory())){
-var des = product.getLongDescription();
-return {res: "ok",id: uniqid(), name: quitQuotationMarks(product.getTitle()), supplier: product.getSupplier(), category: "Electronics", subCategory: product.getCategory(), 
-price: getPrice(product.getCategory()),description: getDescription(product),image: getImages(product.getImages())};
+return {res: "ok",id: uniqid(),ean: product.getEan(), name: quitQuotationMarks(product.getTitle()), 
+supplier: product.getSupplier(), category: "Electronics", subCategory: product.getCategory(), 
+price: getPrice(product.getCategory()),description: getDescription(product), height: getHeight(product),
+weight: getWeight(product),image: getImages(product.getImages())};
 }
 else{
     return {res: "error"}
@@ -59,9 +60,9 @@ function getPrice(category){
     "Notebooks","All-in-One PCs/Workstations", "Audio Visual Equipment","Tablets","Laser Printers","PCs/Workstations",
         "Touch Screen Monitors","Servers", "POS Printers"]
    if(categoryExpensive.includes(category)){
-       return random.int((min = 300), (max = 1000))+"$";
+       return random.int((min = 300), (max = 1000));
    }else{
-    return random.int((min = 100), (max = 500))+"$";
+    return random.int((min = 100), (max = 500));
    }
 }
 
@@ -71,4 +72,26 @@ function getDescription(product){
         return quitQuotationMarks(product.getLongDescription().replace(/(<([^>]+)>)/gi, "").replaceAll("\n",""));
     }
     return quitQuotationMarks(description.replace(/(<([^>]+)>)/gi, "").replaceAll("\n",""));
+}
+
+function getHeight(product){
+    var specifications = product.getSpecifications();
+    var i = 0;
+    for(i;i<specifications.length;i++){
+        if(specifications[i].name.includes("Height") && specifications[i].name !== "Height adjustment" ){
+            return specifications[i].value;
+        }
+    }
+    return 0;
+}
+
+function getWeight(product){
+    var specifications = product.getSpecifications();
+    var i = 0;
+    for(i;i<specifications.length;i++){
+        if(specifications[i].name.includes("Weight")){
+            return specifications[i].value;
+        }
+    }
+    return 0;
 }
