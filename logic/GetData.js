@@ -7,7 +7,14 @@ try{
 const icecatClient = await new icecat('AnaGciaSchz', '123ana');
 var product = await icecatClient.openCatalog.getProductById('EN', id);
 if(isElectronic(product.getCategory())){
-return {res: "ok",id: uniqid(),ean: product.getEan(), name: quitQuotationMarks(product.getTitle()), 
+    var eanValue = 0;
+    try{
+    var eanValue = product.getEan();
+    } 
+    catch(err){
+
+    }
+return {res: "ok",id: uniqid(),ean: eanValue, name: quitQuotationMarks(product.getTitle()), 
 supplier: product.getSupplier(), category: "Electronics", subCategory: product.getCategory(), 
 price: getPrice(product.getCategory()),description: getDescription(product), height: getHeight(product),
 weight: getWeight(product),power: getPower(product), color: getColour(product), image: getImages(product.getImages())};
@@ -50,7 +57,8 @@ function isElectronic(category){
          "Data Storage","NAS & Storage Servers","Tablets","Laser Printers","PCs/Workstations",
         "Touch Screen Monitors","Notebook Spare Parts","Network Switches","Servers","Smoke Detectors",
         "Water Detectors","Alarm Lighting", "Graphics Cards","Power Supply Units", "POS Printers",
-        "Internal Hard Drives", "Keyboards", "Smartphones"]
+        "Internal Hard Drives", "Keyboards", "Smartphones", "Telephones", "Game Consoles", "Mobile Phones", "TVs",
+        "Thin Clients", "Portable Speakers"]
     return categories.includes(category);
 }
 
