@@ -43,8 +43,7 @@ function getImages (images){
 function isElectronic(category){
     console.log(category);
     var categories = ["Computer Monitors","Computers & Peripherals","Computers",
-        "Warranty & Support","Warranty & Support Extensions","Infotainment",
-        "Telecom & Navigation","Notebooks","Telecommunication Equipment Accessories",
+        "Infotainment","Telecom & Navigation","Notebooks","Telecommunication Equipment Accessories",
         "Mobile Communication Device Parts & Accessories","Notebook Parts & Accessories",
         "All-in-One PCs/Workstations","Notebook Spare Parts", "Computer Cables",
         "Computer Components","Audio Visual Equipment","Electrical Equipment & Supplies",
