@@ -65,7 +65,7 @@ function getImages (images){
 
 function isElectronic(category){
     console.log(category);
-    var categories = ["Computer Monitors","Computers & Peripherals","Computers",
+    var categories = ["Computer Monitors","TVs","Computers & Peripherals","Computers",
         "Infotainment","Telecom & Navigation","Notebooks","Telecommunication Equipment Accessories",
         "Mobile Communication Device Parts & Accessories","Notebook Parts & Accessories",
         "All-in-One PCs/Workstations","Notebook Spare Parts", "Computer Cables",
@@ -73,7 +73,7 @@ function isElectronic(category){
          "Data Storage","NAS & Storage Servers","Tablets","Laser Printers","PCs/Workstations",
         "Touch Screen Monitors","Notebook Spare Parts","Network Switches","Servers","Smoke Detectors",
         "Water Detectors","Alarm Lighting", "Graphics Cards","Power Supply Units", "POS Printers",
-        "Internal Hard Drives", "Keyboards", "Smartphones", "Telephones", "Game Consoles", "Mobile Phones", "TVs",
+        "Internal Hard Drives", "Keyboards", "Smartphones", "Telephones", "Game Consoles", "Mobile Phones",
         "Thin Clients", "Portable Speakers"]
     return categories.includes(category);
 }
@@ -94,7 +94,7 @@ function getDescription(product){
     if(description==undefined){
         return quitQuotationMarks(product.getLongDescription().replace(/(<([^>]+)>)/gi, "").replaceAll("\n",""));
     }
-    return quitQuotationMarks(description.replace(/(<([^>]+)>)/gi, "").replaceAll("\n",""));
+    return quitQuotationMarks(description.toString().replace(/(<([^>]+)>)/gi, "").replaceAll("\n",""));
 }
 
 function getHeight(product){

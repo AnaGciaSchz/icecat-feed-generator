@@ -3,12 +3,15 @@ var fw = require ("../inout/FileWriter")
 
 exports.getFeed = async ()=> {
 fw.write("[\n");
-var id = 78503055;
+var id = 20920269;
 var firstLine = true;
 var i;
+var cont = 0;
 for (i = 0; i<10000;i++){
     var data = await getData.getBasicElectronicInformation(id+i);
     if(data.res != "error"){
+        cont++;
+        console.log(cont);
         if(firstLine){
             fw.write("{\n\"id\":\""+data.id+"\",\n\"EAN\":\""+data.ean+"\",\n\"name\":\""+data.name+
             "\",\n\"description\":\""+
