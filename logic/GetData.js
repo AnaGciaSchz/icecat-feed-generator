@@ -15,7 +15,10 @@ if(isElectronic(product.getCategory())){
 
     }
     var priceNew = getPrice(product.getCategory())
-    var priceOld = random.int((min = priceNew+50), (max = priceNew+200));
+    var priceOld = "";
+    if(random.int((min = 1), (max = 100))>60){
+        priceOld = random.int((min = priceNew+50), (max = priceNew+200));
+    }
 
 return {res: "ok",id: uniqid(),ean: eanValue, name: quitQuotationMarks(product.getTitle()), 
 supplier: product.getSupplier(), category: "Electronics", subCategory: product.getCategory(), 
@@ -330,12 +333,58 @@ function getPower(product){
     return 0;
 }
 
+function getPrimaryColor (color){
+ if(color == "stainless steel" || color == "metallic" || color == "platinum"){
+     return "silver";
+ }
+
+ if(color == "lilac"){
+     return "violet";
+ }
+
+ if (color == "aluminium"){
+     return "grey";
+ }
+
+ if( color == "chocolate" || color == "copper colour"){
+     return "brown";
+ }
+
+ if(color == "burgundy"){
+     return "red";
+ }
+
+ if (color == "charcoal"){
+     return "black"
+ }
+
+ if(color == "coral"){
+     return "pink"
+ }
+
+ if(color == "navy"){
+     return "blue"
+ }
+return color;
+}
+
+function getValidColor (color){
+    var colors = ["black","silver","grey","white","red","blue","pink","green","gold","brown","yellow","purple",
+    "violet"]
+    return colors.includes(color)?color: "";
+}
+
 function getColour(product){
     var specifications = product.getSpecifications();
     var i = 0;
     for(i;i<specifications.length;i++){
         if(specifications[i].name.includes("Product colour")){
-            return specifications[i].value;
+            var colors = specifications[i].value.split(",");
+            var validColors = []
+            for(i = 0; i<colors.length;i++){
+                validColors[i] = getValidColor(getPrimaryColor(colors[i]))
+            }
+            return validColors;
         }
     }
     return "";
