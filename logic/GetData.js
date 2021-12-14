@@ -6,7 +6,7 @@ exports.getBasicElectronicInformation = async (id) => {
 try{
 const icecatClient = await new icecat('AnaGciaSchz', '123ana');
 var product = await icecatClient.openCatalog.getProductById('EN', id);
-if(isElectronic(product.getCategory())){
+if(isElectronic(product.getCategory()) && product.getImages().length>0){
     var eanValue = 0;
     try{
     var eanValue = product.getEan();
@@ -30,7 +30,7 @@ disponible: getDisponibility(),hdmiPorts: getHDMIPorts(product), wifi: getWifi(p
 processorModel: getProcessorModel(product),internalMemory: getInternalMemory(product), ethernetLan: getLAN(product),
 pointingDevice: getPointingDevice(product), bluetooth: getBluetooth(product),
 power: getPower(product), OSArquitecture: getOperatingsSystemArchitecture(product),
-color: getColour(product),  rating: random.float((min = 1.5), (max = 5)), 
+color: getColour(product), familyColor:getFamilyColour(product), rating: random.float((min = 1.5), (max = 5)), 
 image: getImages(product.getImages())};
 }
 else{
@@ -77,7 +77,8 @@ function isElectronic(category){
         "Touch Screen Monitors","Notebook Spare Parts","Network Switches","Servers","Smoke Detectors",
         "Water Detectors","Alarm Lighting", "Graphics Cards","Power Supply Units", "POS Printers",
         "Internal Hard Drives", "Keyboards", "Smartphones", "Telephones", "Game Consoles", "Mobile Phones",
-        "Thin Clients", "Portable Speakers"]
+        "Thin Clients", "Portable Speakers", "External Hard Drives", "Projection Screens", "Networking Cables",
+        "Power Cables", "Home Audio Systems", "Soundbar Speakers", "Smartwatches", "Headphones & Headsets"]
     return categories.includes(category);
 }
 
@@ -338,7 +339,7 @@ function getPrimaryColor (color){
      return "silver";
  }
 
- if(color == "lilac"){
+ if(color == "lilac" || color == "lavender"){
      return "violet";
  }
 
@@ -371,10 +372,14 @@ return color;
 function getValidColor (color){
     var colors = ["black","silver","grey","white","red","blue","pink","green","gold","brown","yellow","purple",
     "violet"]
-    return colors.includes(color)?color: "";
+    var finalColor = colors.includes(color)?color: "";
+    if(finalColor==""){
+        console.log(color)
+    }
+    return finalColor;
 }
 
-function getColour(product){
+function getFamilyColour (product){
     var specifications = product.getSpecifications();
     var i = 0;
     for(i;i<specifications.length;i++){
@@ -382,9 +387,20 @@ function getColour(product){
             var colors = specifications[i].value.split(",");
             var validColors = []
             for(i = 0; i<colors.length;i++){
-                validColors[i] = getValidColor(getPrimaryColor(colors[i]))
+                validColors[i] = getValidColor(getPrimaryColor(colors[i].toLowerCase()))
             }
             return validColors;
+        }
+    }
+    return "";
+}
+
+function getColour(product){
+    var specifications = product.getSpecifications();
+    var i = 0;
+    for(i;i<specifications.length;i++){
+        if(specifications[i].name.includes("Product colour")){
+            return specifications[i].value.toLowerCase();
         }
     }
     return "";
