@@ -29,8 +29,8 @@ for (i = 0; i<10000;i++){
             "\",\n\"displayRes\":\""+data.displayRes+
             "\",\n\"hdmiPorts\":\""+data.hdmiPorts+
             "\",\n\"OSInstalled\":\""+data.OSInstalled+
-            "\",\n\"pointingDevice\":\""+data.pointingDevice
-            +"\",\n\"color\":\""+data.color+"\",\n\"familyColor\":\""+data.familyColor+"\",\n\"rating\":\""+
+            "\",\n\"pointingDevice\":\""+data.pointingDevice+
+            "\",\n\"url\":\"https://empathy.co/\",\n\"color\":"+data.color+",\n\"familyColor\":"+data.familyColor+",\n\"rating\":\""+
             data.rating+"\",\n\"numKeypad\":\""+data.numKeypad+"\",\n\"purpose\":\""
             +data.purpose+"\",\n\"image\":"+data.image+",\n\"language\":\"en\"\n}");
             firstLine = false;
@@ -51,8 +51,8 @@ for (i = 0; i<10000;i++){
             "\",\n\"displayRes\":\""+data.displayRes+
             "\",\n\"hdmiPorts\":\""+data.hdmiPorts+
             "\",\n\"OSInstalled\":\""+data.OSInstalled+
-            "\",\n\"pointingDevice\":\""+data.pointingDevice
-            +"\",\n\"color\":\""+data.color+"\",\n\"familyColor\":\""+data.familyColor+"\",\n\"rating\":\""+
+            "\",\n\"pointingDevice\":\""+data.pointingDevice+
+            "\",\n\"url\":\"https://empathy.co/\",\n\"color\":"+data.color+",\n\"familyColor\":"+data.familyColor+",\n\"rating\":\""+
             data.rating+"\",\n\"numKeypad\":\""+data.numKeypad+"\",\n\"purpose\":\""+
             data.purpose+"\",\n\"image\":"+data.image+",\n\"language\":\"en\"\n}");
         }

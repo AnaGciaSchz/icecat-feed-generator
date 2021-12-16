@@ -16,7 +16,7 @@ if(isElectronic(product.getCategory()) && product.getImages().length>0){
     }
     var priceNew = getPrice(product.getCategory())
     var priceOld = "";
-    if(random.int((min = 1), (max = 100))>60){
+    if(random.int((min = 1), (max = 100))>85){
         priceOld = random.int((min = priceNew+50), (max = priceNew+200));
     }
 
@@ -30,7 +30,7 @@ disponible: getDisponibility(),hdmiPorts: getHDMIPorts(product), wifi: getWifi(p
 processorModel: getProcessorModel(product),internalMemory: getInternalMemory(product), ethernetLan: getLAN(product),
 pointingDevice: getPointingDevice(product), bluetooth: getBluetooth(product),
 power: getPower(product), OSArquitecture: getOperatingsSystemArchitecture(product),
-color: getColour(product), familyColor:getFamilyColour(product), rating: random.float((min = 1.5), (max = 5)), 
+color: getColour(product), familyColor:getFamilyColour(product), rating: random.int((min = 1), (max = 5)), 
 image: getImages(product.getImages())};
 }
 else{
@@ -389,10 +389,21 @@ function getFamilyColour (product){
             for(i = 0; i<colors.length;i++){
                 validColors[i] = getValidColor(getPrimaryColor(colors[i].toLowerCase()))
             }
-            return validColors;
+            if(validColors.length>1){
+            var result ="[\n" ;
+            for(i=0;i<validColors.length;i++){
+                    result+= "\""+ validColors[i]+"\"";
+                if(i+1 != validColors.length){
+                    result+=",\n";
+                }
+            }
+            result+="\n]";
+            return result;
+            }
+            return "\""+validColors[0]+"\"";
         }
     }
-    return "";
+    return "\"\"";
 }
 
 function getColour(product){
@@ -400,8 +411,20 @@ function getColour(product){
     var i = 0;
     for(i;i<specifications.length;i++){
         if(specifications[i].name.includes("Product colour")){
-            return specifications[i].value.toLowerCase();
+            var colors = specifications[i].value.toLowerCase().split(",");
+            if(colors.length>1){
+                var result ="[\n" ;
+                for(i=0;i<colors.length;i++){
+                        result+= "\""+ colors[i]+"\"";
+                    if(i+1 != colors.length){
+                        result+=",\n";
+                    }
+                }
+                result+="\n]";
+                return result;
+                }
+                return "\""+colors[0]+"\"";
         }
     }
-    return "";
+    return "\"\"";
 }
